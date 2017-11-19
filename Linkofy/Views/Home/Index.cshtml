@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1 align="center">Linkofy<h1>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Links</h2>
+        <p>
+            Read through your documented links and see what you've built recently.
+        </p>
+        <p><a class="btn btn-default" @Html.ActionLink("Links", "Index","Links")</a> <a/></p>
+    </div>
+    <div class="col-md-6">
+        <h2>Domains</h2>
+        <p>View your documented domains to see where they are pointing and where else they can.</p>
+        <p><a class="btn btn-default" @Html.ActionLink("Domains", "Index","Identifiers")</a> <a/></p>
+    </div>
+    </div>
+<div class="row">
+    <div class="col-md-6">
+        <h2>Clients</h2> 
+        <p>See what you build for your clients with keyword and metric analysis</p>
+        <p><a class="btn btn-default" @Html.ActionLink("Clients", "Index","Clients")</a> <a/></p>
+    </div>
+        <div class="col-md-6">
+        <h2>Links in Build</h2> 
+        <p>Add, amend or push live any links that are currently in build.</p>
+        <p><a class="btn btn-default" @Html.ActionLink("In Build", "Index","Status")</a> <a/></p>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Linkofy.Models.Link>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Client.clientN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Identifier.domain)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserTable.userIdentity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Obdomain)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Obpage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Anchor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuildDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Client.clientN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Identifier.domain)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserTable.userIdentity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Obdomain)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Obpage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Anchor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuildDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.LinkID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.LinkID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.LinkID })
+        </td>
+    </tr>
+}
+
+</table>

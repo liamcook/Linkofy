@@ -1,0 +1,98 @@
+﻿@model Linkofy.Models.Identifier
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Identifier</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MJTopics.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MJTopics.ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserTable.userIdentity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserTable.userIdentity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.domain)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.domain)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contactname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contactname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RI)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,74 @@
+﻿@model Linkofy.Models.Link
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Link</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.clientN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.clientN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Identifier.domain)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Identifier.domain)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserTable.userIdentity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserTable.userIdentity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Obdomain)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Obdomain)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Obpage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Obpage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Anchor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Anchor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BuildDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BuildDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LinkID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

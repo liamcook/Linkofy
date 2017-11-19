@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Linkofy.Models.Client>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MJTopics.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserTable.userIdentity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clientN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.webPage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contactEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contactName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.monthlyQuota)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MJTopics.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserTable.userIdentity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clientN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.webPage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contactEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contactName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.monthlyQuota)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

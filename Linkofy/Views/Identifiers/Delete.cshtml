@@ -1,0 +1,104 @@
+﻿@model Linkofy.Models.Identifier
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Identifier</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MJTopics.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MJTopics.ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserTable.userIdentity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserTable.userIdentity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.domain)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.domain)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contactname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contactname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RI)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
