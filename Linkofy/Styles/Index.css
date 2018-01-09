@@ -1,0 +1,41 @@
+﻿body {
+    background-color: whitesmoke;
+}
+
+.col-md-12 {
+    background-color: white;
+    margin: 40px 15px;
+    padding: 15px 30px;
+    border-top-style: double;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top-color: LightSteelBlue;
+    border-top-width: 8px;
+    border-bottom-width: 8px;
+}
+.col-lg-12 {
+    background-color: white;
+    margin: 40px 15px;
+    padding: 15px 30px;
+    border-top-style: double;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top-color: LightSteelBlue;
+    border-top-width: 8px;
+    border-bottom-width: 8px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 44px;
+    padding: 30px 30px 0px 30px;
+}
+
+.options {
+    text-align: center;
+    font-size: 18px;
+    padding: 0px 0px 30px 0px;
+}
+.table {
+    margin: 30px 3px;
+}

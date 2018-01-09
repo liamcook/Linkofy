@@ -3,67 +3,101 @@
 @{
     ViewBag.Title = "Index";
 }
+@section Styles {
+    <link href="@Url.Content("~/Styles/Index.css")" rel="stylesheet" type="text/css" />
+}
+<h1>Clients</h1>
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<p class="options"> @Html.ActionLink("Add New", "Create") |  @Html.ActionLink("Add Bulk", "Create") </p>
+    <div class="row">
+            <div class="col-md-12">
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MJTopics.ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserTable.userIdentity)
-        </th>
+    <tr> 
         <th>
             @Html.DisplayNameFor(model => model.clientN)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.webPage)
+            @Html.DisplayNameFor(model => model.homePage)
+        </th>
+                <th>
+            @Html.DisplayNameFor(model => model.contName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.contactEmail)
+            @Html.DisplayNameFor(model => model.clientEmail)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.contactName)
+              <th>
+            @Html.DisplayNameFor(model => model.TrustFlow)
+        </th>
+                <th>
+            @Html.DisplayNameFor(model => model.CitationFlow)
+        </th>
+                        <th>
+            @Html.DisplayNameFor(model => model.RI)
+        </th>
+                <th>
+            @Html.DisplayNameFor(model => model.MJTopics.topicalTF)
+        </th>
+                        <th>
+            Built
         </th>
         <th>
             @Html.DisplayNameFor(model => model.monthlyQuota)
         </th>
+                                <th>
+            This Month
+        </th>
+                                        <th>
+            Needed
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Where(p=>p.UserTable.ID == ViewBag.UserTableID)) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MJTopics.ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserTable.userIdentity)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.clientN)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.webPage)
+            @Html.DisplayFor(modelItem => item.homePage)
         </td>
+                <td>
+            @Html.DisplayFor(modelItem => item.contName)
+        </td> 
         <td>
-            @Html.DisplayFor(modelItem => item.contactEmail)
+            @Html.DisplayFor(modelItem => item.clientEmail)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.contactName)
+                <td>
+            @Html.DisplayFor(modelItem => item.TrustFlow)
+        </td>
+                <td>
+            @Html.DisplayFor(modelItem => item.CitationFlow)
+        </td>
+                                <td>
+            @Html.DisplayFor(modelItem => item.RI)
+        </td>
+                <td>
+            @Html.DisplayFor(modelItem => item.MJTopics.topicalTF)
+        </td>
+                                <td>
+            @Html.DisplayFor(modelItem => item.Links.Count)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.monthlyQuota)
         </td>
+                                        <td>
+        @item.Links.Count(a=>a.BuildDate.Month == DateTime.Now.Month)
+                                    </td>
+                                        <td>
+                                    @(item.monthlyQuota - item.Links.Count(a=>a.BuildDate.Month == DateTime.Now.Month))
+        </td> 
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink(" ", "Details", new { id=item.ID }, new {@class= "glyphicon glyphicon-home" })
+            @Html.ActionLink(" ", "Edit", new { id=item.ID }, new {@class= "glyphicon glyphicon-edit" }) 
+            @Html.ActionLink(" ", "Delete", new { id=item.ID }, new {@class= "glyphicon glyphicon-trash" })
         </td>
     </tr>
 }
 
 </table>
+                </div>
+        </div>

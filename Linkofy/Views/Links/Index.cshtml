@@ -3,25 +3,25 @@
 @{
     ViewBag.Title = "Index";
 }
+        @section Styles {
+    <link href="@Url.Content("~/Styles/Index.css")" rel="stylesheet" type="text/css" />
+}
+<h1>Links Built</h1>
 
-<h2>Index</h2>
+<p class="options"> @Html.ActionLink("Add New", "Create")  |   @Html.ActionLink("Add Bulk", "Create") </p>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+       <div class="row">
+            <div class="col-lg-12">
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Client.clientN)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.Identifier.domain)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserTable.userIdentity)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Obdomain)
+        </th>
+                <th>
+            @Html.DisplayNameFor(model => model.Client.clientN)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Obpage)
@@ -35,19 +35,16 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Where(p=>p.UserTable.ID == ViewBag.UserTableID)) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Client.clientN)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Identifier.domain)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserTable.userIdentity)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Obdomain)
+        </td>
+                <td>
+            @Html.DisplayFor(modelItem => item.Client.clientN)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Obpage)
@@ -56,14 +53,16 @@
             @Html.DisplayFor(modelItem => item.Anchor)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BuildDate)
+            @Html.DisplayFor(modelItem => item.BuildDate.Date)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.LinkID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.LinkID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.LinkID })
+            @Html.ActionLink(" ", "Details", new { id=item.LinkID }, new {@class= "glyphicon glyphicon-home" })
+            @Html.ActionLink(" ", "Edit", new { id=item.LinkID }, new {@class= "glyphicon glyphicon-edit" }) 
+            @Html.ActionLink(" ", "Delete", new { id=item.LinkID }, new {@class= "glyphicon glyphicon-trash" })
         </td>
     </tr>
 }
 
 </table>
+                </div>
+           </div>

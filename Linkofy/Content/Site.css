@@ -22,3 +22,14 @@ select,
 textarea {
     max-width: 280px;
 }
+.col-md-12 {
+    background-color: white;
+    margin: 40px 15px;
+    padding: 15px 30px;
+    border-top-style: double;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top-color: LightSteelBlue;
+    border-top-width: 8px;
+    border-bottom-width: 8px;
+}

@@ -2,73 +2,143 @@
 
 @{
     ViewBag.Title = "Details";
+ViewBag.MjTopicsID = Html.DisplayFor(model => model.MJTopics.topicalTF);
 }
 
-<h2>Details</h2>
+@section Styles {
+    <link href="@Url.Content("~/Styles/Details.css")" rel="stylesheet" type="text/css" />
+}
 
-<div>
-    <h4>Client</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MJTopics.ID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MJTopics.ID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserTable.userIdentity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserTable.userIdentity)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.clientN)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.clientN)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.webPage)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.webPage)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.contactEmail)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.contactEmail)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.contactName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.contactName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.monthlyQuota)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.monthlyQuota)
-        </dd>
-
-    </dl>
-</div>
-<p>
+<h1>@Html.DisplayFor(model => model.clientN)</h1>
+<p class="options">
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="displayrow">
+            <tr><th><h3>@Html.DisplayNameFor(model => model.homePage)</h3></th>
+                <th><h3>@Html.DisplayNameFor(model => model.clientEmail)</h3></th>
+                <th><h3>@Html.DisplayNameFor(model => model.contName)</h3></th>
+                <th><h3>@Html.DisplayNameFor(model => model.monthlyQuota)</h3></th>
+                <th><h3>@Html.DisplayNameFor(model => model.TrustFlow)</h3></th>
+                <th><h3>@Html.DisplayNameFor(model => model.CitationFlow)</h3></th>
+                <th><h3>@Html.DisplayNameFor(model => model.RI)</h3></th>
+                <th><h3>@Html.DisplayNameFor(model => model.MJTopics.topicalTF)</h3></th>
+            </tr>
+            <tr><td><h4>@Html.DisplayFor(model => model.homePage)</h4></td>
+                <td><h4>@Html.DisplayFor(model => model.clientEmail)</h4></td>
+                <td><h4>@Html.DisplayFor(model => model.contName)</h4></td>
+                <td><h4>@Html.DisplayFor(model => model.monthlyQuota)</h4></td>
+                <td><h4>@Html.DisplayFor(model => model.TrustFlow)</h4></td>
+                <td><h4>@Html.DisplayFor(model => model.CitationFlow)</h4></td>
+                <td><h4>@Html.DisplayFor(model => model.RI)</h4></td>
+                <td><h4>@Html.DisplayFor(model => model.MJTopics.topicalTF)</h4></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+    <div class="col-md-12">
+<h3>Links Built</h3>
+        <table class="table">
+            <tr>
+                <th>Domain</th>
+                <th>Page Containing Link</th>
+                <th>Anchor Text</th>
+                <th>Date</th>
+                <th>Action</th>
+                    </tr>
+            @foreach (var item in Model.Links)
+            {
+            <tr>
+                                         <td>
+                    @Html.DisplayFor(modelItem => item.Identifier.domain)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Obdomain)
+                </td>
+                                <td>
+                    @Html.DisplayFor(modelItem => item.Anchor)
+                </td>
+
+                          <td>
+                    @Html.DisplayFor(modelItem => item.BuildDate)
+                </td>
+                                        <td>
+            @Html.ActionLink("Edit", "Edit", "Status", new { id=item.LinkID }) |
+            @Html.ActionLink("Domain", "Details", "Status", new { id=item.LinkID }) |
+            @Html.ActionLink("Delete", "Delete", "Status", new { id=item.LinkID })
+        </td>
+            </tr>
+            }
+        </table>
+        </div>
+    <div class="col-md-12">
+<h3>Links in Progress</h3>
+        <table class="table">
+            <tr>
+                <th>Domain</th>
+                                <th>Status</th>
+                <th>Date</th>
+                                <th>Action</th>
+                    </tr>
+            @foreach (var item in Model.Statuss)
+            {
+            <tr>
+                                         <td>
+                    @Html.DisplayFor(modelItem => item.Identifier.domain)
+                </td>
+                                <td>
+                    @Html.DisplayFor(modelItem => item.status)
+                </td>
+
+                          <td>
+                    @Html.DisplayFor(modelItem => item.Last)
+                </td>
+                        <td>
+            @Html.ActionLink("Go Live", "Live", "Status", new { id=item.StatusID }) |
+            @Html.ActionLink("Edit", "Edit", "Status", new { id=item.StatusID }) |
+            @Html.ActionLink("Domain", "Details", "Status", new { id=item.StatusID }) |
+            @Html.ActionLink("Delete", "Delete", "Status", new { id=item.StatusID })
+        </td>
+            </tr>
+            }
+
+        </table>
+</div>
+    <div class="col-md-12">
+<h3>Related Unused Domains</h3>
+        <table class="table">
+            <tr>
+                <th>Domain</th>
+                                <th>Status</th>
+                <th>Date</th>
+                                <th>Action</th>
+                    </tr>
+            @foreach (var item in Model.Statuss)
+            {
+            <tr>
+                                         <td>
+                    @Html.DisplayFor(modelItem => item.Identifier.domain)
+                </td>
+                                <td>
+                    @Html.DisplayFor(modelItem => item.status)
+                </td>
+
+                          <td>
+                    @Html.DisplayFor(modelItem => item.Last)
+                </td>
+                        <td>
+            @Html.ActionLink("Go Live", "Live", "Status", new { id=item.StatusID }) |
+            @Html.ActionLink("Edit", "Edit", "Status", new { id=item.StatusID }) |
+            @Html.ActionLink("Domain", "Details", "Status", new { id=item.StatusID }) |
+            @Html.ActionLink("Delete", "Delete", "Status", new { id=item.StatusID })
+        </td>
+            </tr>
+            }
+
+        </table>
+</div>
+

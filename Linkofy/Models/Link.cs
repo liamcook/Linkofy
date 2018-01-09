@@ -11,7 +11,7 @@ namespace Linkofy.Models
        
 
         [Required]
-        [Display(Name = "Page Containing Link")]
+        [Display(Name = "Linking Page")]
         public string Obdomain { get; set; }
 
         
@@ -30,10 +30,10 @@ namespace Linkofy.Models
         [Display(Name = "Date Built")]
         public DateTime BuildDate { get; set; }
 
-        public int? IdentifierID { get; set; }
+        public int IdentifierID { get; set; }
         public virtual Identifier Identifier { get; set; }
 
-        public int UserTableID { get; set; }
+        public int? UserTableID { get; set; }
         public virtual UserTable UserTable { get; set; }
 
     }

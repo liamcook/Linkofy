@@ -197,6 +197,7 @@
     <Compile Include="Controllers\IdentifiersController.cs" />
     <Compile Include="Controllers\LinksController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="fonts\StatusController.cs" />
     <Compile Include="Majestic API Liam\API Model.cs" />
     <Compile Include="Majestic API Liam\API requester 2.cs" />
     <Compile Include="Majestic API Liam\API requester.cs" />
@@ -206,6 +207,83 @@
     <Compile Include="Migrations\201711181306335_ballz1.Designer.cs">
       <DependentUpon>201711181306335_ballz1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711191615007_api.cs" />
+    <Compile Include="Migrations\201711191615007_api.Designer.cs">
+      <DependentUpon>201711191615007_api.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711191821190_erwer.cs" />
+    <Compile Include="Migrations\201711191821190_erwer.Designer.cs">
+      <DependentUpon>201711191821190_erwer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711192146528_gigigerg.cs" />
+    <Compile Include="Migrations\201711192146528_gigigerg.Designer.cs">
+      <DependentUpon>201711192146528_gigigerg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711192155064_rtehirteh.cs" />
+    <Compile Include="Migrations\201711192155064_rtehirteh.Designer.cs">
+      <DependentUpon>201711192155064_rtehirteh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711192203350_bergi.cs" />
+    <Compile Include="Migrations\201711192203350_bergi.Designer.cs">
+      <DependentUpon>201711192203350_bergi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711192207518_erghjerh.cs" />
+    <Compile Include="Migrations\201711192207518_erghjerh.Designer.cs">
+      <DependentUpon>201711192207518_erghjerh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711192210523_erguer.cs" />
+    <Compile Include="Migrations\201711192210523_erguer.Designer.cs">
+      <DependentUpon>201711192210523_erguer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711251710464_ierg.cs" />
+    <Compile Include="Migrations\201711251710464_ierg.Designer.cs">
+      <DependentUpon>201711251710464_ierg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711261108136_rtreg.cs" />
+    <Compile Include="Migrations\201711261108136_rtreg.Designer.cs">
+      <DependentUpon>201711261108136_rtreg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711261916342_ergerg.cs" />
+    <Compile Include="Migrations\201711261916342_ergerg.Designer.cs">
+      <DependentUpon>201711261916342_ergerg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711261948341_ergierv.cs" />
+    <Compile Include="Migrations\201711261948341_ergierv.Designer.cs">
+      <DependentUpon>201711261948341_ergierv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712281611374_newmj.cs" />
+    <Compile Include="Migrations\201712281611374_newmj.Designer.cs">
+      <DependentUpon>201712281611374_newmj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712302148485_topicalupdate.cs" />
+    <Compile Include="Migrations\201712302148485_topicalupdate.Designer.cs">
+      <DependentUpon>201712302148485_topicalupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712302210164_changenames.cs" />
+    <Compile Include="Migrations\201712302210164_changenames.Designer.cs">
+      <DependentUpon>201712302210164_changenames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712310050475_changename2.cs" />
+    <Compile Include="Migrations\201712310050475_changename2.Designer.cs">
+      <DependentUpon>201712310050475_changename2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801011820043_pagelinkin.cs" />
+    <Compile Include="Migrations\201801011820043_pagelinkin.Designer.cs">
+      <DependentUpon>201801011820043_pagelinkin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801051106176_ballz2.cs" />
+    <Compile Include="Migrations\201801051106176_ballz2.Designer.cs">
+      <DependentUpon>201801051106176_ballz2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801051246508_newri.cs" />
+    <Compile Include="Migrations\201801051246508_newri.Designer.cs">
+      <DependentUpon>201801051246508_newri.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801051302041_newstyle.cs" />
+    <Compile Include="Migrations\201801051302041_newstyle.Designer.cs">
+      <DependentUpon>201801051302041_newstyle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Account\DetailsModel.cs" />
     <Compile Include="Models\LinkofyDBInitialiser.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -265,24 +343,19 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\ionicons.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
+    <Content Include="fonts\ionicons.eot" />
+    <Content Include="fonts\ionicons.ttf" />
+    <Content Include="fonts\ionicons.woff" />
+    <Content Include="fonts\ionicons.woff2" />
+    <Content Include="Styles\Details.css" />
+    <Content Include="Styles\Edit.css" />
+    <Content Include="Styles\Index.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -319,26 +392,32 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Identifiers\Create.cshtml" />
-    <Content Include="Views\Identifiers\Delete.cshtml" />
-    <Content Include="Views\Identifiers\Details.cshtml" />
-    <Content Include="Views\Identifiers\Edit.cshtml" />
-    <Content Include="Views\Identifiers\Index.cshtml" />
     <Content Include="Views\Links\Create.cshtml" />
     <Content Include="Views\Links\Delete.cshtml" />
     <Content Include="Views\Links\Details.cshtml" />
     <Content Include="Views\Links\Edit.cshtml" />
     <Content Include="Views\Links\Index.cshtml" />
+    <Content Include="Views\Identifiers\Create.cshtml" />
+    <Content Include="Views\Identifiers\Delete.cshtml" />
+    <Content Include="Views\Identifiers\Details.cshtml" />
+    <Content Include="Views\Identifiers\Edit.cshtml" />
+    <Content Include="Views\Identifiers\Index.cshtml" />
     <Content Include="Views\Clients\Create.cshtml" />
     <Content Include="Views\Clients\Delete.cshtml" />
     <Content Include="Views\Clients\Details.cshtml" />
     <Content Include="Views\Clients\Edit.cshtml" />
     <Content Include="Views\Clients\Index.cshtml" />
+    <Content Include="Views\Status\Create.cshtml" />
+    <Content Include="Views\Status\Delete.cshtml" />
+    <Content Include="Views\Status\Details.cshtml" />
+    <Content Include="Views\Status\Edit.cshtml" />
+    <Content Include="Views\Status\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="DAL\" />
     <Folder Include="Migrations\NewFolder1\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -351,9 +430,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201711121627144_InitialCreate.resx">
@@ -386,6 +462,69 @@
     <EmbeddedResource Include="Migrations\201711181306335_ballz1.resx">
       <DependentUpon>201711181306335_ballz1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711191615007_api.resx">
+      <DependentUpon>201711191615007_api.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711191821190_erwer.resx">
+      <DependentUpon>201711191821190_erwer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711192146528_gigigerg.resx">
+      <DependentUpon>201711192146528_gigigerg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711192155064_rtehirteh.resx">
+      <DependentUpon>201711192155064_rtehirteh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711192203350_bergi.resx">
+      <DependentUpon>201711192203350_bergi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711192207518_erghjerh.resx">
+      <DependentUpon>201711192207518_erghjerh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711192210523_erguer.resx">
+      <DependentUpon>201711192210523_erguer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711251710464_ierg.resx">
+      <DependentUpon>201711251710464_ierg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711261108136_rtreg.resx">
+      <DependentUpon>201711261108136_rtreg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711261916342_ergerg.resx">
+      <DependentUpon>201711261916342_ergerg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711261948341_ergierv.resx">
+      <DependentUpon>201711261948341_ergierv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712281611374_newmj.resx">
+      <DependentUpon>201712281611374_newmj.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712302148485_topicalupdate.resx">
+      <DependentUpon>201712302148485_topicalupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712302210164_changenames.resx">
+      <DependentUpon>201712302210164_changenames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712310050475_changename2.resx">
+      <DependentUpon>201712310050475_changename2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801011820043_pagelinkin.resx">
+      <DependentUpon>201801011820043_pagelinkin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801051106176_ballz2.resx">
+      <DependentUpon>201801051106176_ballz2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801051246508_newri.resx">
+      <DependentUpon>201801051246508_newri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801051302041_newstyle.resx">
+      <DependentUpon>201801051302041_newstyle.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Clients\Related.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Identifiers\Available.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Linkofy.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Linkofy.Controllers
 {
@@ -15,13 +16,19 @@ namespace Linkofy.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Links
+        [Authorize]
         public ActionResult Index()
         {
+            var userId = User.Identity.GetUserId();
+            var UserTableID = db.UserTables.Where(c => c.ApplicationUserId == userId).First().ID;
+            ViewBag.UserTableID = UserTableID;
+            ViewBag.Userid = userId;
             var links = db.Links.Include(l => l.Client).Include(l => l.Identifier).Include(l => l.UserTable);
             return View(links.ToList());
         }
 
         // GET: Links/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +44,7 @@ namespace Linkofy.Controllers
         }
 
         // GET: Links/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.ClientID = new SelectList(db.Clients, "ID", "clientN");
@@ -66,6 +74,7 @@ namespace Linkofy.Controllers
         }
 
         // GET: Links/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -103,6 +112,7 @@ namespace Linkofy.Controllers
         }
 
         // GET: Links/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)

@@ -24,7 +24,6 @@ namespace Linkofy.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
-            Database.SetInitializer<ApplicationDbContext>(new LinksDBInitialiser());
         }
 
         public static ApplicationDbContext Create()
@@ -38,9 +37,5 @@ namespace Linkofy.Models
         public DbSet<Client> Clients { get; set; }
         public DbSet<Status> Statuss { get; set; }
         public DbSet<MJTopics> MJTopicss { get; set; }
-        public DbSet<MajesticData> MajesticDatas { get; set; }
-        public DbSet<DataTables> DataTabless { get; set; }
-        public DbSet<Results> Resultss { get; set; }
-        public DbSet<Headers> Headerss { get; set; }
     }
     }

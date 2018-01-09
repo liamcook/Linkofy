@@ -4,76 +4,45 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Client</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MJTopics.ID)
-        </dt>
+@section Styles {
+    <link href="@Url.Content("~/Styles/Details.css")" rel="stylesheet" type="text/css" />
+}
 
-        <dd>
-            @Html.DisplayFor(model => model.MJTopics.ID)
-        </dd>
+<h1>Delete @Html.DisplayNameFor(model => model.clientN)</h1>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserTable.userIdentity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserTable.userIdentity)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.clientN)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.clientN)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.webPage)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.webPage)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.contactEmail)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.contactEmail)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.contactName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.contactName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.monthlyQuota)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.monthlyQuota)
-        </dd>
-
-    </dl>
+<div class="row">
+    <div class="col-md-12">
+        <table class="displayrow">
+            <tr><th><h3>@Html.DisplayNameFor(model => model.homePage)</h3></th>
+                <th><h3>@Html.DisplayNameFor(model => model.clientEmail)</h3></th>
+                <th><h3>@Html.DisplayNameFor(model => model.contName)</h3></th>
+                <th><h3>@Html.DisplayNameFor(model => model.monthlyQuota)</h3></th>
+                <th><h3>@Html.DisplayNameFor(model => model.TrustFlow)</h3></th>
+                <th><h3>@Html.DisplayNameFor(model => model.CitationFlow)</h3></th>
+                <th><h3>@Html.DisplayNameFor(model => model.RI)</h3></th>
+                <th><h3>@Html.DisplayNameFor(model => model.MJTopics.topicalTF)</h3></th>
+            </tr>
+            <tr><td><h4>@Html.DisplayFor(model => model.homePage)</h4></td>
+                <td><h4>@Html.DisplayFor(model => model.clientEmail)</h4></td>
+                <td><h4>@Html.DisplayFor(model => model.contName)</h4></td>
+                <td><h4>@Html.DisplayFor(model => model.monthlyQuota)</h4></td>
+                <td><h4>@Html.DisplayFor(model => model.TrustFlow)</h4></td>
+                <td><h4>@Html.DisplayFor(model => model.CitationFlow)</h4></td>
+                <td><h4>@Html.DisplayFor(model => model.RI)</h4></td>
+                <td><h4>@Html.DisplayFor(model => model.MJTopics.topicalTF)</h4></td>
+            </tr>
+        </table>
+    </div>
+</div>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
+    <p class="options">Are you sure you want to delete this Client?</p>
+
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Delete" class="btn btn-default btn-lg" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

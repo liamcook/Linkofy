@@ -9,7 +9,7 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar" style="background-color: LightSteelBlue;">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -24,6 +24,7 @@
                     <li>@Html.ActionLink("Domains", "Index", "Identifiers")</li>
                     <li>@Html.ActionLink("Clients", "Index", "Clients")</li>
                     <li>@Html.ActionLink("Links", "Index", "Links")</li>
+                    <li>@Html.ActionLink("Status", "Index", "Status")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -40,5 +41,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+        @RenderSection("Styles", required: false)
 </body>
 </html>

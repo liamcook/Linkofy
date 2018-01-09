@@ -3,96 +3,73 @@
 @{
     ViewBag.Title = "Details";
 }
+@section Styles {
+    <link href="@Url.Content("~/Styles/Details.css")" rel="stylesheet" type="text/css" />
+}
 
-<h2>Details</h2>
+<h1>@Html.DisplayFor(model => model.domain)</h1>
+<p class="options">@Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |  @Html.ActionLink("Back to List", "Index")</p>
 
-<div>
-    <h4>Identifier</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MJTopics.ID)
-        </dt>
+<div class="row">
+    <div class="col-md-12">
+        <table class="displayrow">
+            <tr><th><h3>@Html.DisplayNameFor(model => model.contactname)</h3></th>
+                <th><h3>@Html.DisplayNameFor(model => model.contact)</h3></th>
+                <th><h3>@Html.DisplayNameFor(model => model.price)</h3></th>
+                <th><h3>@Html.DisplayNameFor(model => model.type)</h3></th>
+                <th><h3>@Html.DisplayNameFor(model => model.TrustFlow)</h3></th>
+                <th><h3>@Html.DisplayNameFor(model => model.CitationFlow)</h3></th>
+                <th><h3>@Html.DisplayNameFor(model => model.RI)</h3></th>
+                <th><h3>@Html.DisplayNameFor(model => model.MJTopics.topicalTF)</h3></th>
+            </tr>
+            <tr><td><h4>@Html.DisplayFor(model => model.contactname)</h4></td>
+                <td><h4>@Html.DisplayFor(model => model.contact)</h4></td>
+                <td><h4>@Html.DisplayFor(model => model.price)</h4></td>
+                <td><h4>@Html.DisplayFor(model => model.type)</h4></td>
+                <td><h4>@Html.DisplayFor(model => model.TrustFlow)</h4></td>
+                <td><h4>@Html.DisplayFor(model => model.CitationFlow)</h4></td>
+                <th><h4>@Html.DisplayFor(model => model.RI)</h4></th>
+                <td><h4>@Html.DisplayFor(model => model.MJTopics.topicalTF)</h4></td>
+            </tr>
+        </table>
+    </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.MJTopics.ID)
-        </dd>
+    <div class="col-md-12">
+<h3>Links Built</h3>
+        <table class="table">
+            <tr>
+                <th>Page Containing Link</th>
+                <th>Client</th>
+                <th>Outbound URL</th>
+                <th>Anchor Text</th>
+                <th>Date</th>
+                <th>Action</th>
+                    </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserTable.userIdentity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserTable.userIdentity)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.domain)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.domain)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.contact)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.contact)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.contactname)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.contactname)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.type)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.type)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TF)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TF)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CF)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CF)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RI)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RI)
-        </dd>
-
-    </dl>
+            @foreach (var item in Model.Links) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Obdomain)
+                </td>
+                                          <td>
+                    @Html.DisplayFor(modelItem => item.Client.clientN)
+                </td>
+                                                          <td>
+                    @Html.DisplayFor(modelItem => item.Obpage)
+                </td>
+                                <td>
+                    @Html.DisplayFor(modelItem => item.Anchor)
+                </td>
+                          <td>
+                    @Html.DisplayFor(modelItem => item.BuildDate.Date)
+                </td>
+                                                        <td>
+            @Html.ActionLink("Edit", "Edit", "Status", new { id=item.LinkID }) |
+            @Html.ActionLink("Domain", "Details", "Status", new { id=item.LinkID }) |
+            @Html.ActionLink("Delete", "Delete", "Status", new { id=item.LinkID })
+        </td>
+            </tr>
+            }
+        </table>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

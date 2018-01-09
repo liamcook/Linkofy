@@ -12,20 +12,28 @@ namespace Linkofy.Models
         [Display(Name = "Client")]
         public string clientN { get; set; }
 
-        [Url]
         [Display(Name = "Website")]
-        public int webPage{ get; set; }
+        public string homePage{ get; set; }
 
         [EmailAddress]
         [Display(Name = "Contact Email")]
-        public int contactEmail { get; set; }
+        public string clientEmail { get; set; }
 
         [Display(Name = "Contact Name")]
-        public int contactName { get; set; }
+        public string contName { get; set; }
 
-        [Display(Name = "Monthly Links")]
+        [Display(Name = "Monthly")]
         public int monthlyQuota { get; set; }
- 
+
+        [Display(Name = "TF")]
+        public int TrustFlow { get; set; }
+
+        [Display(Name = "CF")]
+        public int CitationFlow { get; set; }
+
+        [Display(Name = "RIPs")]
+        public int RI { get; set; }
+
         public int? MJTopicsID { get; set; }
         public virtual MJTopics MJTopics { get; set; }
 
@@ -33,5 +41,6 @@ namespace Linkofy.Models
         public virtual UserTable UserTable { get; set; }
 
         public virtual ICollection<Link> Links { get; set; }
+        public virtual ICollection<Status> Statuss { get; set; }
     }
 }

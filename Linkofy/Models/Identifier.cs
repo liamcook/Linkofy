@@ -14,7 +14,6 @@ namespace Linkofy.Models
 
         public int ID { get; set; }
 
-        [Url]
         [Required]
         [Display(Name = "Domain")]
         public string domain { get; set; }
@@ -28,14 +27,19 @@ namespace Linkofy.Models
         public string contactname { get; set; }
 
         [Required]
+        [Display(Name = "Price")]
         public int price { get; set; }
 
         [Display(Name = "Type of Link")]
         public Ltype? type { get; set; }
 
+        [Display(Name = "TF")]
+        public int TrustFlow { get; set; }
 
-        public int TF { get; set; }
-        public int CF { get; set; }
+        [Display(Name = "CF")]
+        public int CitationFlow { get; set; }
+
+        [Display(Name = "RIPs")]
         public int RI { get; set; }
 
         public int? MJTopicsID { get; set; }
@@ -44,5 +48,6 @@ namespace Linkofy.Models
         public virtual UserTable UserTable { get; set; }
         public int UserTableID { get; set; }
 
+        public virtual ICollection<Link> Links { get; set; }
     }
 }

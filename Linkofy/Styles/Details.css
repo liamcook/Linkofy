@@ -1,0 +1,87 @@
+﻿body {
+    background-color: whitesmoke;
+}
+
+.col-md-12 {
+    background-color: white;
+    margin: 40px 15px;
+    padding: 15px 30px;
+    border-top-style: double;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top-color: LightSteelBlue;
+    border-top-width: 8px;
+    border-bottom-width: 8px;
+}
+    .col-md-12:nth-child(1) {
+        background-color: white;
+        margin: 40px 15px;
+        padding: 30px 30px;
+        border-radius: 10px 10px;
+        border: 1px solid LightSteelBlue;
+        border-color: LightSteelBlue;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-top-width: 8px;
+        border-bottom-width: 8px;
+    }
+
+.displayrow td {
+    margin: 0px 20px;
+    padding: 0px 20px;
+    text-align: center;
+    border-right: 1px groove;
+    border-color: LightSteelBlue;
+}
+
+.displayrow th {
+    margin: 0px 20px;
+    padding: 0px 20px;
+    text-align: center;
+    border-right: 1px groove;
+    border-color: LightSteelBlue;
+}
+
+    .displayrow th:nth-child(8) {
+        margin: 0px 20px;
+        padding: 0px 20px;
+        text-align: center;
+        border-right: none;
+    }
+
+.displayrow td:nth-child(8) {
+    margin: 0px 20px;
+    padding: 0px 20px;
+    text-align: center;
+    border-right: none;
+}
+
+.displayrow {
+    margin: 15px 15px;
+    padding: 15px 15px;
+    border-top: none;
+    border-bottom: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    text-align: center;
+    font-size: 44px;
+    padding: 30px 30px 0px 30px;
+}
+
+.options {
+    text-align: center;
+    font-size: 18px;
+    padding: 0px 0px 30px 0px;
+}
+.form-actions {
+    align-content: center;
+    align-items: center;
+    align-self: center;
+    vertical-align: central;
+    text-align: center;
+    font-size: 18px;
+}
+

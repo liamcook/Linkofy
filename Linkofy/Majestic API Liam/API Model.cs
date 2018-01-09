@@ -107,6 +107,7 @@ namespace Linkofy.Models
         public class MajesticData
         {
         public int ID { get; set; }
+
         public string Code { get; set; }
             public string ErrorMessage { get; set; }
             public string FullError { get; set; }

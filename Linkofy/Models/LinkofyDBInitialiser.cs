@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Linkofy.Models
 {
-    public class LinksDBInitialiser : System.Data.Entity.DropCreateDatabaseIfModelChanges<ApplicationDbContext>
+    public class LinksDBInitialiser : System.Data.Entity.DropCreateDatabaseAlways<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext context)
         {
@@ -25,9 +25,9 @@ namespace Linkofy.Models
             context.SaveChanges();
             var Identifiers = new List<Identifier>
             {
-                new Identifier{ID=1,domain="Vogue.com",contact="emma@gmail.com",contactname="emma",price=35,TF=34,CF=29,RI=389,MJTopicsID=9,type=Identifier.Ltype.ExistingLink,UserTableID=1},
-                new Identifier{ID=2,domain="Fooyoh.com",contact="2emma@gmail.com",contactname="2emma",price=40,TF=37,CF=34,RI=2765,MJTopicsID=5,type=Identifier.Ltype.ExistingLink,UserTableID=1},
-                new Identifier{ID=3,domain="Techwiz.com",contact="3emma@gmail.com",contactname="2emma",price=60,TF=52,CF=58,RI=5859,MJTopicsID=22,type=Identifier.Ltype.ExistingLink,UserTableID=2},
+                new Identifier{ID=1,domain="Vogue.com",contact="emma@gmail.com",contactname="emma",price=35,RI=389,MJTopicsID=9,type=Identifier.Ltype.ExistingLink,UserTableID=1},
+                new Identifier{ID=2,domain="Fooyoh.com",contact="2emma@gmail.com",contactname="2emma",price=40,RI=2765,MJTopicsID=5,type=Identifier.Ltype.ExistingLink,UserTableID=1},
+                new Identifier{ID=3,domain="Techwiz.com",contact="3emma@gmail.com",contactname="2emma",price=60,RI=5859,MJTopicsID=22,type=Identifier.Ltype.ExistingLink,UserTableID=2},
                     };
 
             Identifiers.ForEach(s => context.Identifiers.Add(s));
