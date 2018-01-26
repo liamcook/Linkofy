@@ -1,0 +1,182 @@
+﻿@model Linkofy.Models.Client
+
+@{
+    ViewBag.Title = "CreateBulk";
+}
+    @section Styles {
+    <link href="@Url.Content("~/Styles/Bulk.css")" rel="stylesheet" type="text/css" />
+}
+
+<h1>Add Bulk Clients</h1>
+<p class="options">@Html.ActionLink("Back to List", "Index")</p>
+
+<div class="col-md-12">
+    <br />
+<p class="options">Write your CSV using the column headers below each definition and upload it.</p>
+<table class="table">
+    <tr>
+        <th>
+            Client Name
+        </th>
+        <th>
+            Website
+        </th>
+        <th>
+            Contact Email
+        </th>
+        <th>
+            Contact Name
+        </th>
+        <th>
+            Monthly Quota
+        </th>
+                <th>
+            Topic ID
+        </th>
+    </tr>
+    <tr>
+        <td>
+            clientN
+        </td>
+        <td>
+            homePage
+        </td>
+        <td>
+            clientEmail
+        </td>
+                <td>
+            contName
+        </td>
+        <td>
+            monthlyQuota
+        </td>
+                <td>
+            MJTopicsID
+        </td>
+    </tr>
+    </table>
+    <br>
+<table class="table">
+<tbody>
+    <tr>
+<td>MJTopicsID</td>
+<td>Topic</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Adult</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Arts</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Business</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Computers</td>
+</tr>
+<tr>
+<td>5</td>
+<td>General</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Games</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Green</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Life</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Fashion</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Fitness</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Health</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Home</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Jewellery</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Marketing</td>
+</tr>
+<tr>
+<td>15</td>
+<td>News</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Recreation</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Reference</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Regional</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Science</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Shopping</td>
+</tr>
+<tr>
+<td>21</td>
+<td>Society</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Sports</td>
+</tr>
+<tr>
+<td>23</td>
+<td>Technology</td>
+</tr>
+<tr>
+<td>24</td>
+<td>Vehicles</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Wedding</td>
+</tr>
+<tr>
+<td>26</td>
+<td>World</td>
+</tr>
+</tbody>
+</table>
+    <br />
+    @using (Html.BeginForm("CreateBulk", "Clients", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            <label for="attachment">Select a Csv File</label>
+            <label class="btn btn-default btn-file">
+                <input type="file" name="attachmentcsv" id="attachmentcsv" hidden>
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Upload</button>
+    }
+</div>

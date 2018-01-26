@@ -1,0 +1,55 @@
+﻿@model Linkofy.Models.EmailAccount
+
+@{
+    ViewBag.Title = "SendMail";
+}
+@section Styles {
+    <link href="@Url.Content("~/Styles/Edit.css")" rel="stylesheet" type="text/css" />
+}
+@section Scripts {
+  <script src="@Url.Content("~/Javascript/SendEmail.js")"></script>
+}
+
+<h1>Send Outreach Email</h1>
+
+    <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+    @using (Html.BeginForm("SendMail", "Identifiers", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+    @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                        <div class="form-group">
+             Email Address: <br />
+                @Html.DropDownList("emailAddress", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.emailAddress, "", new { @class = "text-danger" })
+        </div>
+          <div class="form-group">
+               To:<br />
+               @Html.TextBox("toemail", ViewData["contactemail"], new { @class = "form-control" })
+              </div>
+                          <div class="form-group">
+               To Name:<br />
+               @Html.TextBox("toname", ViewData["contactname"], new { @class = "form-control" })
+              </div>
+                                        <div class="form-group">
+             Template: <br />
+                @Html.DropDownList("templateName", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+
+          
+          <div class="form-group">
+              Subject:<br />
+                @Html.TextBox("subject", ViewData["subject"], new { @class = "form-control" })
+              </div>
+                          <div class="form-group">
+                              Body:<br />
+ 
+                @Html.TextArea("body", ViewData["body"].ToString(), new { @class = "form-control" })
+              </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+            }
+        </div>
+        </div>
+

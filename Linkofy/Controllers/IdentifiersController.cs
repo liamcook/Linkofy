@@ -11,27 +11,113 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Text;
 using Microsoft.AspNet.Identity;
+using Linkofy.Functions;
+using CsvHelper;
+using System.Net.Mail;
+using Newtonsoft.Json;
+using PagedList;
 
 namespace Linkofy.Controllers
 {
+    [Authorize]
     public class IdentifiersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Identifiers
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, int? page, string currentFilter, string searchString)
         {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.DomainSortParm = String.IsNullOrEmpty(sortOrder) ? "Dom_desc" : "";
+            ViewBag.ContactESortParm = sortOrder == "ContE" ? "ContE_desc" : "ContE";
+            ViewBag.ContNSortParm = sortOrder == "ContN" ? "ContN_desc" : "ContN";
+            ViewBag.PriceSortParm = sortOrder == "Price" ? "Price_desc" : "Price";
+            ViewBag.TypeSortParm = sortOrder == "Type" ? "Type_desc" : "Type";
+            ViewBag.TFSortParm = sortOrder == "TF" ? "TF_desc" : "TF";
+            ViewBag.CFSortParm = sortOrder == "CF" ? "CF_desc" : "CF";
+            ViewBag.RISortParm = sortOrder == "RI" ? "RI_desc" : "RI";
+            ViewBag.MJSortParm = sortOrder == "MJ" ? "MJ_desc" : "MJ";
+            var identifiers = db.Identifiers.Include(i => i.MJTopics).Include(i => i.UserTable);
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            switch (sortOrder)
+            {
+                case "Dom_desc":
+                    identifiers = identifiers.OrderByDescending(s => s.domain);
+                    break;
+                case "ContE":
+                    identifiers = identifiers.OrderBy(s => s.contact);
+                    break;
+                case "ContE_desc":
+                    identifiers = identifiers.OrderByDescending(s => s.contact);
+                    break;
+                case "ContN":
+                    identifiers = identifiers.OrderBy(s => s.contactname);
+                    break;
+                case "ContN_desc":
+                    identifiers = identifiers.OrderByDescending(s => s.contactname);
+                    break;
+                case "Price":
+                    identifiers = identifiers.OrderBy(s => s.price);
+                    break;
+                case "Price_desc":
+                    identifiers = identifiers.OrderByDescending(s => s.price);
+                    break;
+                case "Type":
+                    identifiers = identifiers.OrderBy(s => s.type);
+                    break;
+                case "Type_desc":
+                    identifiers = identifiers.OrderByDescending(s => s.type);
+                    break;
+                case "TF":
+                    identifiers = identifiers.OrderBy(s => s.TrustFlow);
+                    break;
+                case "TF_desc":
+                    identifiers = identifiers.OrderByDescending(s => s.TrustFlow);
+                    break;
+                case "CF":
+                    identifiers = identifiers.OrderBy(s => s.CitationFlow);
+                    break;
+                case "CF_desc":
+                    identifiers = identifiers.OrderByDescending(s => s.CitationFlow);
+                    break;
+                case "RI":
+                    identifiers = identifiers.OrderBy(s => s.RI);
+                    break;
+                case "RI_desc":
+                    identifiers = identifiers.OrderByDescending(s => s.RI);
+                    break;
+                case "MJ":
+                    identifiers = identifiers.OrderBy(s => s.MJTopics.topicalTF);
+                    break;
+                case "MJ_desc":
+                    identifiers = identifiers.OrderByDescending(s => s.MJTopics.topicalTF);
+                    break;
+                default:
+                    identifiers = identifiers.OrderBy(s => s.domain);
+                    break;
+            }
+            int pageSize = 30;
+            int pageNumber = (page ?? 1);
             var userId = User.Identity.GetUserId();
             var UserTableID = db.UserTables.Where(c => c.ApplicationUserId == userId).First().ID;
             ViewBag.UserTableID = UserTableID;
             ViewBag.Userid = userId;
-            var identifiers = db.Identifiers.Include(i => i.MJTopics).Include(i => i.UserTable);
-            return View(identifiers.ToList());
+            return View(identifiers.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Identifiers/Details/5
-        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -47,11 +133,20 @@ namespace Linkofy.Controllers
         }
         public ActionResult Available(int? id)
         {
-            ViewBag.ClientID = id;
-            return View();
-    }
+            var userId = User.Identity.GetUserId();
+            var UserTableID = db.UserTables.Where(c => c.ApplicationUserId == userId).First().ID;
+            ViewBag.UserTableID = UserTableID;
+            ViewBag.Userid = userId;
+            ViewBag.DomainN = db.Identifiers.Where(c => c.ID == id).FirstOrDefault().domain;
+            ViewBag.DomainD = id;
+
+            var clients = (from i in db.Clients.Include(i => i.MJTopics).Include(i => i.UserTable).AsQueryable()
+                           join l in db.Links.AsQueryable() on new { ID = i.ID, ClientID = id } equals new { ID = l.IdentifierID, ClientID = l.ClientID } into jL
+                           where jL.Count() == 0
+                           select i);
+            return View(clients.ToList());
+        }
         // GET: Identifiers/Create
-        [Authorize]
         public ActionResult Create()
         {
             ViewBag.MJTopicsID = new SelectList(db.MJTopicss, "ID", "topicalTF");
@@ -69,47 +164,73 @@ namespace Linkofy.Controllers
             if (ModelState.IsValid)
             {
                 String Strip = model.domain.Replace("https://www.", "").Replace("http://www.", "").Replace("https://", "").Replace("http://", "").Replace("www.", "");
-
                 string[] URLtests = { "https://www." + Strip, "http://www." + Strip, "https://" + Strip, "http://" + Strip };
-
-                foreach (string URLt in URLtests)
-                {
-                    HttpWebRequest myHttpWebRequest = (HttpWebRequest)WebRequest.Create(URLt);
-                    myHttpWebRequest.AllowAutoRedirect = false;
-                    HttpWebResponse myHttpWebResponse = (HttpWebResponse)myHttpWebRequest.GetResponse();
-                    int resulting = (int)myHttpWebResponse.StatusCode;
-                    if (resulting == 200)
-                    {
-                        String Urlnew = URLt;
-                        ViewBag.FinalURL = URLt.Replace("https://", "").Replace("http://", "");
-                        break;
-                    }
-                }
-                        HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.majestic.com/api/json?app_api_key=9852A91EF12A4A3D4DCC7014BD161FF9&cmd=GetIndexItemInfo&items=1&item0=" + ViewBag.FinalURL + "&datasource=fresh");
-                {
-                    WebResponse response = request.GetResponse();
-                    using (Stream responseStream = response.GetResponseStream())
-                    { 
-                        StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                        JObject jObject = JObject.Parse(reader.ReadToEnd());
-                        JToken Trusty = jObject["DataTables"]["Results"]["Data"][0]["TrustFlow"].Value<int>() ;
-                        JToken City = jObject["DataTables"]["Results"]["Data"][0]["CitationFlow"].Value<int>();
-                        JToken RIPy = jObject["DataTables"]["Results"]["Data"][0]["RefIPs"].Value<int>();
-                        var userId = User.Identity.GetUserId();
-                        var UserTableID = db.UserTables.Where(c => c.ApplicationUserId == userId).First().ID;
-                        var newdomain = new Identifier { domain = ViewBag.FinalURL, contact = model.contact, contactname = model.contactname.First().ToString().ToUpper() + model.contactname.Substring(1), price = model.price, type = model.type, TrustFlow = Int32.Parse(Trusty.ToString()), CitationFlow = Int32.Parse(City.ToString()), RI = Int32.Parse(RIPy.ToString()), MJTopicsID = model.MJTopicsID, UserTableID = UserTableID };
-                        ViewBag.newdomain = newdomain;
-                        db.Identifiers.Add(newdomain);
-                        db.SaveChanges();
-                        return RedirectToAction("Index");
-                    }
-                }
+                string[] Metric = MajesticFunctions.MajesticChecker(URLtests);
+                var userId = User.Identity.GetUserId();
+                var UserTableID = db.UserTables.Where(c => c.ApplicationUserId == userId).First().ID;
+                var identifier = new Identifier { domain = Metric[0], contact = model.contact, contactname = model.contactname.First().ToString().ToUpper() + model.contactname.Substring(1), price = model.price, type = model.type, TrustFlow = Int32.Parse(Metric[1]), CitationFlow = Int32.Parse(Metric[2]), RI = Int32.Parse(Metric[3]), MJTopicsID = model.MJTopicsID, UserTableID = UserTableID };
+                ViewBag.identifier = identifier;
+                db.Identifiers.Add(identifier);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
             ViewBag.MJTopicsID = new SelectList(db.MJTopicss, "ID", "ID", model.MJTopicsID);
             ViewBag.UserTableID = new SelectList(db.UserTables, "ID", "userIdentity", model.UserTableID);
-            return View(ViewBag.newdomain);
+            return View(ViewBag.identifier);
         }
+        public ActionResult CreateBulk()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("CreateBulk")]
+        public ActionResult CreateBulkUpload(Identifier model)
+        {
+            var file = Request.Files["attachmentcsv"];
+            using (var csv = new CsvReader(new StreamReader(file.InputStream), true))
+            {
+                csv.Configuration.HeaderValidated = null;
+                csv.Configuration.MissingFieldFound = null;
+                var records = csv.GetRecords<Identifier>().ToList();
+                foreach (var item in records)
+                {
+                    var strip = item.domain.Replace("https://www.", "").Replace("http://www.", "")
+                       .Replace("https://", "").Replace("http://", "").Replace("www.", "");
 
+                    string[] URLtests =
+                       {"https://www." + strip, "http://www." + strip, "https://" + strip, "http://" + strip};
+
+                    string[] Metric = MajesticFunctions.MajesticChecker(URLtests);
+
+                    if (!(from c in db.Identifiers
+                          select c.domain).Contains(Metric[0]))
+                    {
+                        var userId = User.Identity.GetUserId();
+                        var UserTableID = db.UserTables.Where(c => c.ApplicationUserId == userId).First().ID;
+
+                        var identifier = new Identifier
+                        {
+                            domain = Metric[0],
+                            contact = item.contact,
+                            contactname = item.contactname.First().ToString().ToUpper() + item.contactname.Substring(1),
+                            price = item.price,
+                            type = item.type,
+                            TrustFlow = Int32.Parse(Metric[1]),
+                            CitationFlow = Int32.Parse(Metric[2]),
+                            RI = Int32.Parse(Metric[3]),
+                            MJTopicsID = item.MJTopicsID,
+                            UserTableID = UserTableID
+                        };
+                        ViewBag.identifier = identifier;
+                        db.Identifiers.Add(identifier);
+                        db.SaveChanges();
+                    }
+                    else { continue; }
+                }
+                return RedirectToAction("Index");
+            }
+        }
         // GET: Identifiers/Edit/5
         [Authorize]
         public ActionResult Edit(int? id)
@@ -133,17 +254,25 @@ namespace Linkofy.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,domain,contact,contactname,price,type,CitationFlow,TrustFlow,RI,MJTopicsID,ViewBag.UserTableID")] Identifier identifier)
+        public ActionResult Edit(Identifier model)
         {
             if (ModelState.IsValid)
             {
+                String Strip = model.domain.Replace("https://www.", "").Replace("http://www.", "").Replace("https://", "").Replace("http://", "").Replace("www.", "");
+
+                string[] URLtests = { "https://www." + Strip, "http://www." + Strip, "https://" + Strip, "http://" + Strip };
+                string[] Metric = MajesticFunctions.MajesticChecker(URLtests);
+                var userId = User.Identity.GetUserId();
+                var UserTableID = db.UserTables.Where(c => c.ApplicationUserId == userId).First().ID;
+                var identifier = new Identifier { domain = Metric[0], contact = model.contact, contactname = model.contactname.First().ToString().ToUpper() + model.contactname.Substring(1), price = model.price, type = model.type, TrustFlow = Int32.Parse(Metric[1]), CitationFlow = Int32.Parse(Metric[2]), RI = Int32.Parse(Metric[3]), MJTopicsID = model.MJTopicsID, UserTableID = UserTableID };
+                ViewBag.identifier = identifier;
                 db.Entry(identifier).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MJTopicsID = new SelectList(db.MJTopicss, "ID", "ID", identifier.MJTopicsID);
-            ViewBag.UserTableID = new SelectList(db.UserTables, "ID", "userIdentity", identifier.UserTableID);
-            return View(identifier);
+            ViewBag.MJTopicsID = new SelectList(db.MJTopicss, "ID", "ID", model.MJTopicsID);
+            ViewBag.UserTableID = new SelectList(db.UserTables, "ID", "userIdentity", model.UserTableID);
+            return View(ViewBag.identifier);
         }
 
         // GET: Identifiers/Delete/5
@@ -172,16 +301,58 @@ namespace Linkofy.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        public ActionResult Details3()
+        public ActionResult SendMail(int id, string templateName)
         {
-            return View();
-        }
-        public ActionResult Details2()
-        {
+            Link link = db.Links.Find(id);
+            string type = db.Identifiers.Where(c => c.ID == id).First().type.ToString();
+            int templateNUM = db.Templates.Where(c => c.Default.ToString() == type).First().ID;
+            ViewBag.subject = db.Templates.Where(c => c.Default.ToString() == type).First().subject;
+            ViewBag.body = db.Templates.Where(c => c.Default.ToString() == type).First().Body;
+            ViewBag.contactemail = db.Identifiers.Where(c => c.ID == id).First().contact;
+            ViewBag.contactname = db.Identifiers.Where(c => c.ID == id).First().contactname;
+            ViewBag.emailAddress = new SelectList(db.EmailAccounts, "emailAddress", "emailAddress");
+            ViewBag.templateName = new SelectList(db.Templates, "ID", "templateName", templateNUM);
+
             return View();
         }
 
+        [HttpPost, ActionName("SendMail")]
+        public ActionResult SendMailPost(string emailAddress, string toemail, string subject, string body)
+        {
+            string senderName = db.EmailAccounts.Where(c => c.emailAddress == emailAddress).First().senderName;
+            string fromPassword = db.EmailAccounts.Where(c => c.emailAddress == emailAddress).First().password;
+            var fromAddress = new MailAddress(emailAddress, senderName);
+            var toAddress = new MailAddress(toemail, "Liam Cook");
+            
 
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(message);
+                return RedirectToAction("Index");
+            }
+        }
+        public JsonResult TemplateData(int id)
+        {
+            var v = new {
+                subject = db.Templates.Where(c => c.ID == id).First().subject,
+                body = db.Templates.Where(c => c.ID == id).First().Body
+            };
+            String json = JsonConvert.SerializeObject(v);
+            return Json(json, JsonRequestBehavior.AllowGet);
+        }
 
         protected override void Dispose(bool disposing)
         {

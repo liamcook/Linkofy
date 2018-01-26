@@ -1,0 +1,57 @@
+﻿@model Linkofy.Models.Identifier
+
+@{
+    ViewBag.Title = "CreateBulk";
+}
+    @section Styles {
+    <link href="@Url.Content("~/Styles/Bulk.css")" rel="stylesheet" type="text/css" />
+}
+
+<h1>Add Bulk Links</h1>
+<p class="options">@Html.ActionLink("Back to List", "Index")</p>
+
+<div class="col-md-12">
+    <br />
+<p class="options">Write your CSV using the column headers below each definition and upload it.</p>
+<table class="table">
+    <tr>
+        <th>
+            Linking Page (not domain)
+        </th>
+        <th>
+            Outbound Link
+        </th>
+        <th>
+            Anchor Text
+        </th>
+        <th>
+            Date Built
+        </th>
+    </tr>
+    <tr>
+        <td>
+            Obdomain
+        </td>
+        <td>
+            Obpage
+        </td>
+                <td>
+            Anchor
+        </td>
+        <td>
+            BuildDate
+        </td>
+    </table>
+
+    <br />
+    @using (Html.BeginForm("CreateBulk", "Links", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            <label for="attachment">Select a Csv File</label>
+            <label class="btn btn-default btn-file">
+                <input type="file" name="attachmentcsv" id="attachmentcsv" hidden>
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Upload</button>
+    }
+</div>

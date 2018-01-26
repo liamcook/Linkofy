@@ -45,41 +45,100 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CsvHelper, Version=6.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.6.1.0\lib\net45\CsvHelper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LINQtoCSV, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LINQtoCSV.1.5.0.0\lib\net35\LINQtoCSV.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Entity" />
-    <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Routing" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Web.Services" />
-    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Entity">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Abstractions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -91,6 +150,7 @@
     </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -120,69 +180,91 @@
   <ItemGroup>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin">
       <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin.Host.SystemWeb">
       <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin.Security">
       <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Facebook">
       <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Cookies">
       <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.OAuth">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Google">
       <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Twitter">
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
       <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.ApplicationInsights">
       <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.DependencyCollector">
       <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.PerfCounterCollector">
       <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.ServerTelemetryChannel">
       <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.WindowsServer">
       <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.Web">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -193,136 +275,26 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
+    <Compile Include="Controllers\EmailAccountsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IdentifiersController.cs" />
     <Compile Include="Controllers\LinksController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TemplatesController.cs" />
     <Compile Include="fonts\StatusController.cs" />
+    <Compile Include="Functions\MajesticChecker.cs" />
     <Compile Include="Majestic API Liam\API Model.cs" />
     <Compile Include="Majestic API Liam\API requester 2.cs" />
     <Compile Include="Majestic API Liam\API requester.cs" />
     <Compile Include="Majestic API\DataTable.cs" />
     <Compile Include="Majestic API\Response.cs" />
-    <Compile Include="Migrations\201711181306335_ballz1.cs" />
-    <Compile Include="Migrations\201711181306335_ballz1.Designer.cs">
-      <DependentUpon>201711181306335_ballz1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711191615007_api.cs" />
-    <Compile Include="Migrations\201711191615007_api.Designer.cs">
-      <DependentUpon>201711191615007_api.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711191821190_erwer.cs" />
-    <Compile Include="Migrations\201711191821190_erwer.Designer.cs">
-      <DependentUpon>201711191821190_erwer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711192146528_gigigerg.cs" />
-    <Compile Include="Migrations\201711192146528_gigigerg.Designer.cs">
-      <DependentUpon>201711192146528_gigigerg.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711192155064_rtehirteh.cs" />
-    <Compile Include="Migrations\201711192155064_rtehirteh.Designer.cs">
-      <DependentUpon>201711192155064_rtehirteh.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711192203350_bergi.cs" />
-    <Compile Include="Migrations\201711192203350_bergi.Designer.cs">
-      <DependentUpon>201711192203350_bergi.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711192207518_erghjerh.cs" />
-    <Compile Include="Migrations\201711192207518_erghjerh.Designer.cs">
-      <DependentUpon>201711192207518_erghjerh.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711192210523_erguer.cs" />
-    <Compile Include="Migrations\201711192210523_erguer.Designer.cs">
-      <DependentUpon>201711192210523_erguer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711251710464_ierg.cs" />
-    <Compile Include="Migrations\201711251710464_ierg.Designer.cs">
-      <DependentUpon>201711251710464_ierg.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711261108136_rtreg.cs" />
-    <Compile Include="Migrations\201711261108136_rtreg.Designer.cs">
-      <DependentUpon>201711261108136_rtreg.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711261916342_ergerg.cs" />
-    <Compile Include="Migrations\201711261916342_ergerg.Designer.cs">
-      <DependentUpon>201711261916342_ergerg.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711261948341_ergierv.cs" />
-    <Compile Include="Migrations\201711261948341_ergierv.Designer.cs">
-      <DependentUpon>201711261948341_ergierv.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712281611374_newmj.cs" />
-    <Compile Include="Migrations\201712281611374_newmj.Designer.cs">
-      <DependentUpon>201712281611374_newmj.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712302148485_topicalupdate.cs" />
-    <Compile Include="Migrations\201712302148485_topicalupdate.Designer.cs">
-      <DependentUpon>201712302148485_topicalupdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712302210164_changenames.cs" />
-    <Compile Include="Migrations\201712302210164_changenames.Designer.cs">
-      <DependentUpon>201712302210164_changenames.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712310050475_changename2.cs" />
-    <Compile Include="Migrations\201712310050475_changename2.Designer.cs">
-      <DependentUpon>201712310050475_changename2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801011820043_pagelinkin.cs" />
-    <Compile Include="Migrations\201801011820043_pagelinkin.Designer.cs">
-      <DependentUpon>201801011820043_pagelinkin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801051106176_ballz2.cs" />
-    <Compile Include="Migrations\201801051106176_ballz2.Designer.cs">
-      <DependentUpon>201801051106176_ballz2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801051246508_newri.cs" />
-    <Compile Include="Migrations\201801051246508_newri.Designer.cs">
-      <DependentUpon>201801051246508_newri.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801051302041_newstyle.cs" />
-    <Compile Include="Migrations\201801051302041_newstyle.Designer.cs">
-      <DependentUpon>201801051302041_newstyle.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Models\EmailAccount.cs" />
+    <Compile Include="Models\Outreach.cs" />
+    <Compile Include="Models\Template.cs" />
     <Compile Include="Views\Account\DetailsModel.cs" />
     <Compile Include="Models\LinkofyDBInitialiser.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711121627144_InitialCreate.cs" />
-    <Compile Include="Migrations\201711121627144_InitialCreate.Designer.cs">
-      <DependentUpon>201711121627144_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711122253085_potato.cs" />
-    <Compile Include="Migrations\201711122253085_potato.Designer.cs">
-      <DependentUpon>201711122253085_potato.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711130016220_big.cs" />
-    <Compile Include="Migrations\201711130016220_big.Designer.cs">
-      <DependentUpon>201711130016220_big.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711140003296_panda.cs" />
-    <Compile Include="Migrations\201711140003296_panda.Designer.cs">
-      <DependentUpon>201711140003296_panda.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711142211129_Newclientattr.cs" />
-    <Compile Include="Migrations\201711142211129_Newclientattr.Designer.cs">
-      <DependentUpon>201711142211129_Newclientattr.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711142222538_ballz.cs" />
-    <Compile Include="Migrations\201711142222538_ballz.Designer.cs">
-      <DependentUpon>201711142222538_ballz.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711142246069_thumb.cs" />
-    <Compile Include="Migrations\201711142246069_thumb.Designer.cs">
-      <DependentUpon>201711142246069_thumb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711152246265_bib.cs" />
-    <Compile Include="Migrations\201711152246265_bib.Designer.cs">
-      <DependentUpon>201711152246265_bib.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711152302541_rthl.cs" />
-    <Compile Include="Migrations\201711152302541_rthl.Designer.cs">
-      <DependentUpon>201711152302541_rthl.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -341,6 +313,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\ionicons.svg" />
@@ -353,6 +326,9 @@
     <Content Include="fonts\ionicons.ttf" />
     <Content Include="fonts\ionicons.woff" />
     <Content Include="fonts\ionicons.woff2" />
+    <Content Include="JavaScript\CreateLink.js" />
+    <Content Include="JavaScript\SendEmail.js" />
+    <Content Include="Styles\Bulk.css" />
     <Content Include="Styles\Details.css" />
     <Content Include="Styles\Edit.css" />
     <Content Include="Styles\Index.css" />
@@ -416,8 +392,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="DAL\" />
-    <Folder Include="Migrations\NewFolder1\" />
-    <Folder Include="ViewModels\" />
+    <Folder Include="Styles\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -432,99 +407,58 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711121627144_InitialCreate.resx">
-      <DependentUpon>201711121627144_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711122253085_potato.resx">
-      <DependentUpon>201711122253085_potato.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711130016220_big.resx">
-      <DependentUpon>201711130016220_big.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711140003296_panda.resx">
-      <DependentUpon>201711140003296_panda.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711142211129_Newclientattr.resx">
-      <DependentUpon>201711142211129_Newclientattr.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711142222538_ballz.resx">
-      <DependentUpon>201711142222538_ballz.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711142246069_thumb.resx">
-      <DependentUpon>201711142246069_thumb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711152246265_bib.resx">
-      <DependentUpon>201711152246265_bib.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711152302541_rthl.resx">
-      <DependentUpon>201711152302541_rthl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711181306335_ballz1.resx">
-      <DependentUpon>201711181306335_ballz1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711191615007_api.resx">
-      <DependentUpon>201711191615007_api.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711191821190_erwer.resx">
-      <DependentUpon>201711191821190_erwer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711192146528_gigigerg.resx">
-      <DependentUpon>201711192146528_gigigerg.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711192155064_rtehirteh.resx">
-      <DependentUpon>201711192155064_rtehirteh.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711192203350_bergi.resx">
-      <DependentUpon>201711192203350_bergi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711192207518_erghjerh.resx">
-      <DependentUpon>201711192207518_erghjerh.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711192210523_erguer.resx">
-      <DependentUpon>201711192210523_erguer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711251710464_ierg.resx">
-      <DependentUpon>201711251710464_ierg.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711261108136_rtreg.resx">
-      <DependentUpon>201711261108136_rtreg.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711261916342_ergerg.resx">
-      <DependentUpon>201711261916342_ergerg.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711261948341_ergierv.resx">
-      <DependentUpon>201711261948341_ergierv.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712281611374_newmj.resx">
-      <DependentUpon>201712281611374_newmj.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712302148485_topicalupdate.resx">
-      <DependentUpon>201712302148485_topicalupdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712302210164_changenames.resx">
-      <DependentUpon>201712302210164_changenames.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712310050475_changename2.resx">
-      <DependentUpon>201712310050475_changename2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801011820043_pagelinkin.resx">
-      <DependentUpon>201801011820043_pagelinkin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801051106176_ballz2.resx">
-      <DependentUpon>201801051106176_ballz2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801051246508_newri.resx">
-      <DependentUpon>201801051246508_newri.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801051302041_newstyle.resx">
-      <DependentUpon>201801051302041_newstyle.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Clients\Related.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Identifiers\Available.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Clients\Available.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Clients\CreateBulk.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Identifiers\CreateBulk.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Links\CreateBulk.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Identifiers\SendMail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Templates\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Templates\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Templates\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Templates\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Templates\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EmailAccounts\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EmailAccounts\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EmailAccounts\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EmailAccounts\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EmailAccounts\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\Linkofy - Web Deploy.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

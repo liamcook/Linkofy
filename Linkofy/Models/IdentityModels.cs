@@ -37,5 +37,8 @@ namespace Linkofy.Models
         public DbSet<Client> Clients { get; set; }
         public DbSet<Status> Statuss { get; set; }
         public DbSet<MJTopics> MJTopicss { get; set; }
+        public DbSet<Outreach> OutreachLists { get; set; }
+        public DbSet<EmailAccount> EmailAccounts { get; set; }
+        public DbSet<Template> Templates { get; set; }
     }
     }

@@ -23,6 +23,7 @@ namespace Linkofy.Models
         public StatusC? status { get; set; }
 
         [Required]
+        [Display(Name = "Last Updated")]
         public DateTime Last { get; set; }
 
         [Required]

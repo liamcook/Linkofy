@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Linkofy.Models.Identifier>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MJTopics.topicalTF)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserTable.userIdentity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.domain)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contactname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrustFlow)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CitationFlow)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RI)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Where(p=>p.MJTopics.ID == ViewBag.MjTopicsID))) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MJTopics.topicalTF)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserTable.userIdentity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.domain)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contactname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrustFlow)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CitationFlow)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RI)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

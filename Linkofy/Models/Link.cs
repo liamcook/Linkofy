@@ -7,6 +7,11 @@ namespace Linkofy.Models
 {
     public class Link
     {
+        public enum Live
+        {
+            Yes, No
+        }
+
         public int LinkID { get; set; }
        
 
@@ -27,8 +32,12 @@ namespace Linkofy.Models
         public string Anchor { get; set; }
 
         [Required]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Date Built")]
+        [DataType(DataType.Date)]
         public DateTime BuildDate { get; set; }
+
+        public Live? live { get; set; }
 
         public int IdentifierID { get; set; }
         public virtual Identifier Identifier { get; set; }

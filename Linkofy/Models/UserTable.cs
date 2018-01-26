@@ -11,6 +11,9 @@ namespace Linkofy.Models
         public string userIdentity { get; set; }
 
         public virtual ICollection<Identifier> Identifiers { get; set; }
+        public virtual ICollection<Client> Clients { get; set; }
+        public virtual ICollection<Template> Templates { get; set; }
+        public virtual ICollection<Link> Links { get; set; }
 
         public virtual ApplicationUser Users { get; set; }
 

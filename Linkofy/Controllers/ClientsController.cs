@@ -11,23 +11,133 @@ using Microsoft.AspNet.Identity;
 using Newtonsoft.Json.Linq;
 using System.Text;
 using System.IO;
+using LINQtoCSV;
+using System.Configuration;
+using System.Data.OleDb;
+using System.Data.Common;
+using CsvHelper;
+using Linkofy.Functions;
+using PagedList;
+
 
 namespace Linkofy.Controllers
 {
+    [Authorize]
     public class ClientsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Clients
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString, string currentFilter, string NameString, string TopicString, string RIString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.HpageSortParm = sortOrder == "Hpage" ? "Hpage_desc" : "Hpage";
+            ViewBag.EmailSortParm = sortOrder == "Email" ? "Email_desc" : "Email";
+            ViewBag.contNameSortParm = sortOrder == "contName" ? "contName_desc" : "contName";
+            ViewBag.QTASortParm = sortOrder == "QTA" ? "QTA_desc" : "QTA";
+            ViewBag.TrustFlowSortParm = sortOrder == "TF" ? "TF_desc" : "TF";
+            ViewBag.CFSortParm = sortOrder == "CF" ? "CF_desc" : "CF";
+            ViewBag.RISortParm = sortOrder == "RI" ? "RI_desc" : "RI";
+            ViewBag.MJSortParm = sortOrder == "MJ" ? "MJ_desc" : "MJ";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var clients = from s in db.Clients.Include(c => c.MJTopics).Include(c => c.UserTable)
+            select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                clients = clients.Where(s => s.clientN.Contains(searchString)
+                                       || s.homePage.Contains(searchString));
+            }
+            if (!String.IsNullOrEmpty(NameString))
+            {
+                clients = clients.Where(s => s.clientEmail.Contains(NameString)
+                                       || s.contName.Contains(NameString));
+            }
+            if (!String.IsNullOrEmpty(RIString))
+            {
+                clients = clients.Where(s => s.clientN.Contains(RIString));
+            }
+            if (!String.IsNullOrEmpty(TopicString))
+            {
+                clients = clients.Where(s => s.MJTopics.topicalTF.Contains(TopicString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    clients = clients.OrderByDescending(s => s.clientN);
+                    break;
+                case "Hpage":
+                    clients = clients.OrderBy(s => s.homePage);
+                    break;
+                case "Hpage_desc":
+                    clients = clients.OrderByDescending(s => s.homePage);
+                    break;
+                case "Email":
+                    clients = clients.OrderBy(s => s.clientEmail);
+                    break;
+                case "Email_desc":
+                    clients = clients.OrderByDescending(s => s.clientEmail);
+                    break;
+                case "contName":
+                    clients = clients.OrderBy(s => s.contName);
+                    break;
+                case "contName_desc":
+                    clients = clients.OrderByDescending(s => s.contName);
+                    break;
+                case "QTA":
+                    clients = clients.OrderBy(s => s.monthlyQuota);
+                    break;
+                case "QTA_desc":
+                    clients = clients.OrderByDescending(s => s.monthlyQuota);
+                    break;
+                case "TF":
+                    clients = clients.OrderBy(s => s.TrustFlow);
+                    break;
+                case "TF_desc":
+                    clients = clients.OrderByDescending(s => s.TrustFlow);
+                    break;
+                case "CF":
+                    clients = clients.OrderBy(s => s.CitationFlow);
+                    break;
+                case "CF_desc":
+                    clients = clients.OrderByDescending(s => s.CitationFlow);
+                    break;
+                case "RI":
+                    clients = clients.OrderBy(s => s.RI);
+                    break;
+                case "RI_desc":
+                    clients = clients.OrderByDescending(s => s.RI);
+                    break;
+                case "MJ":
+                    clients = clients.OrderBy(s => s.MJTopics.topicalTF);
+                    break;
+                case "MJ_desc":
+                    clients = clients.OrderByDescending(s => s.MJTopics.topicalTF);
+                    break;
+                default:
+                    clients = clients.OrderBy(s => s.clientN);
+                    break;
+            }
+
+            int pageSize = 30;
+            int pageNumber = (page ?? 1);
             var userId = User.Identity.GetUserId();
             var UserTableID = db.UserTables.Where(c => c.ApplicationUserId == userId).First().ID;
             ViewBag.UserTableID = UserTableID;
             ViewBag.Userid = userId;
-            var clients = db.Clients.Include(c => c.MJTopics).Include(c => c.UserTable);
-            return View(clients.ToList());
+            return View(clients.ToPagedList(pageNumber, pageSize));
         }
         public ActionResult DetailsView()
         {
@@ -43,6 +153,7 @@ namespace Linkofy.Controllers
         [Authorize]
         public ActionResult Details(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -52,6 +163,7 @@ namespace Linkofy.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ClientID = id;
             return View(client);
         }
 
@@ -66,67 +178,92 @@ namespace Linkofy.Controllers
             ViewBag.Userid = userId;
             return View();
         }
-        public ActionResult Site()
+        public ActionResult Available(int? id)
         {
-            HttpWebRequest myHttpWebRequest = (HttpWebRequest)WebRequest.Create("https://orlajames.com");
-            // Sends the HttpWebRequest and waits for a response.
-            myHttpWebRequest.AllowAutoRedirect = false;
-            HttpWebResponse myHttpWebResponse = (HttpWebResponse)myHttpWebRequest.GetResponse();
-                int resulting = (int)myHttpWebResponse.StatusCode;
+            var userId = User.Identity.GetUserId();
+            var UserTableID = db.UserTables.Where(c => c.ApplicationUserId == userId).First().ID;
+            ViewBag.UserTableID = UserTableID;
+            ViewBag.Userid = userId;
+            ViewBag.ClientN = db.Clients.Where(c => c.ID == id).FirstOrDefault().clientN;
+            ViewBag.ClientD = id;
 
-
-            return Content(resulting.ToString());
+            var identifiers = (from i in db.Identifiers.Include(i => i.MJTopics).Include(i => i.UserTable).AsQueryable()
+                               join l in db.Links.AsQueryable() on new { ID = i.ID, ClientID = id } equals new { ID = l.IdentifierID, ClientID = l.ClientID } into jL
+                               where jL.Count() == 0
+                               select i);
+            return View(identifiers.ToList());
         }
-
-        // POST: Clients/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        public ActionResult CreateBulk()
+        {
+            return View();
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Client model)
         {
             if (ModelState.IsValid)
             {
-                String Strip = model.homePage.Replace("https://www.", "").Replace("http://www.", "").Replace("https://", "").Replace("http://", "").Replace("www.","");
-
+                String Strip = model.homePage.Replace("https://www.", "").Replace("http://www.", "").Replace("https://", "").Replace("http://", "").Replace("www.", "");
                 string[] URLtests = { "https://www." + Strip, "http://www." + Strip, "https://" + Strip, "http://" + Strip };
-
-                foreach (string URLt in URLtests)
-                {
-                    HttpWebRequest myHttpWebRequest = (HttpWebRequest)WebRequest.Create(URLt);  
-                    myHttpWebRequest.AllowAutoRedirect = false;
-                    HttpWebResponse myHttpWebResponse = (HttpWebResponse)myHttpWebRequest.GetResponse();
-                    int resulting = (int)myHttpWebResponse.StatusCode;
-                    if (resulting == 200)
-                    {
-                        String Urlnew = URLt;
-                        ViewBag.FinalURL = URLt.Replace("https://", "").Replace("http://", "");
-                            break;
-                    }
+                    string[] Metric = MajesticFunctions.MajesticChecker(URLtests);
+                    var userId = User.Identity.GetUserId();
+                    var UserTableID = db.UserTables.Where(c => c.ApplicationUserId == userId).First().ID;
+                    var newclient = new Client { clientN = model.clientN, homePage = Metric[0], clientEmail = model.clientEmail, contName = model.contName.First().ToString().ToUpper() + model.contName.Substring(1), monthlyQuota = model.monthlyQuota, TrustFlow = Int32.Parse(Metric[1]), CitationFlow = Int32.Parse(Metric[2]), RI = Int32.Parse(Metric[3]), MJTopicsID = model.MJTopicsID, UserTableID = UserTableID };
+                    ViewBag.newdomain = newclient;
+                    db.Clients.Add(newclient);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
                 }
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.majestic.com/api/json?app_api_key=9852A91EF12A4A3D4DCC7014BD161FF9&cmd=GetIndexItemInfo&items=1&item0=" + ViewBag.FinalURL + "&datasource=fresh");
-                {
-                    WebResponse response = request.GetResponse();
-                    using (Stream responseStream = response.GetResponseStream())
-                    {
-                        StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                        JObject jObject = JObject.Parse(reader.ReadToEnd());
-                        JToken Trusty = jObject["DataTables"]["Results"]["Data"][0]["TrustFlow"].Value<int>();
-                        JToken City = jObject["DataTables"]["Results"]["Data"][0]["CitationFlow"].Value<int>();
-                        JToken RIPy = jObject["DataTables"]["Results"]["Data"][0]["RefIPs"].Value<int>();
-                        var userId = User.Identity.GetUserId();
-                        var UserTableID = db.UserTables.Where(c => c.ApplicationUserId == userId).First().ID;
-                        var newclient = new Client { clientN = model.clientN, homePage = ViewBag.FinalURL, clientEmail = model.clientEmail, contName = model.contName.First().ToString().ToUpper() + model.contName.Substring(1), monthlyQuota = model.monthlyQuota, TrustFlow = Int32.Parse(Trusty.ToString()), CitationFlow = Int32.Parse(City.ToString()), RI = Int32.Parse(RIPy.ToString()), MJTopicsID = model.MJTopicsID, UserTableID = UserTableID };
-                        ViewBag.newdomain = newclient;
-                        db.Clients.Add(newclient);
-                        db.SaveChanges();
-                        return RedirectToAction("Index");
-                    }
-                }
-            }
             ViewBag.MJTopicsID = new SelectList(db.MJTopicss, "ID", "ID", model.MJTopicsID);
             ViewBag.UserTableID = new SelectList(db.UserTables, "ID", "userIdentity", model.UserTableID);
             return View(ViewBag.newdomain);
+        }
+        [HttpPost]
+        [ActionName("CreateBulk")]
+        public ActionResult CreateBulkUpload(Client model)
+        {
+            var file = Request.Files["attachmentcsv"];
+            using (var csv = new CsvReader(new StreamReader(file.InputStream), true))
+            {
+                csv.Configuration.HeaderValidated = null;
+                csv.Configuration.MissingFieldFound = null;
+                var records = csv.GetRecords<Client>().ToList();
+                foreach (var item in records)
+                {
+                    if (!(from c in db.Clients
+                          select c.clientN).Contains(item.clientN))
+                    {
+                        var strip = item.homePage.Replace("https://www.", "").Replace("http://www.", "")
+                            .Replace("https://", "").Replace("http://", "").Replace("www.", "");
+
+                        string[] URLtests =
+                            {"https://www." + strip, "http://www." + strip, "https://" + strip, "http://" + strip};
+
+                        string[] Metric = MajesticFunctions.MajesticChecker(URLtests);
+                        var userId = User.Identity.GetUserId();
+                        var UserTableID = db.UserTables.Where(c => c.ApplicationUserId == userId).First().ID;
+
+                        var newclient = new Client
+
+                        {
+                            clientN = item.clientN,
+                            homePage = Metric[0],
+                            clientEmail = item.clientEmail,
+                            contName = item.contName,
+                            monthlyQuota = item.monthlyQuota,
+                            TrustFlow = Int32.Parse(Metric[1]),
+                            CitationFlow = Int32.Parse(Metric[2]),
+                            RI = Int32.Parse(Metric[3]),
+                            MJTopicsID = item.MJTopicsID,
+                            UserTableID = UserTableID
+                        };
+                        db.Clients.Add(newclient);
+                        db.SaveChanges();
+                    }
+                    else { continue; }
+                }
+                    return RedirectToAction("Index");
+            }
         }
 
         // GET: Clients/Edit/5

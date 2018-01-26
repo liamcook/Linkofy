@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Linkofy.Models.Identifier>
+
+@{
+    ViewBag.Title = "Available";
+}
+    @section Styles {
+    <link href="@Url.Content("~/Styles/Index.css")" rel="stylesheet" type="text/css" />
+}
+
+<h1>@ViewBag.ClientN Available Domains</h1>
+
+<p class="options"> @Html.ActionLink("Client List", "Index") |  @Html.ActionLink("Client Home", "Details", new { id=ViewBag.ClientD })</p>
+
+       <div class="row">
+            <div class="col-md-12">
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.domain)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contactname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.type)
+        </th>
+                <th>
+            @Html.DisplayNameFor(model => model.TrustFlow)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CitationFlow)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RI)
+        </th>
+                <th>
+            @Html.DisplayNameFor(model => model.MJTopics.topicalTF)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Where(p=>p.UserTable.ID == ViewBag.UserTableID)) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.domain)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contactname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.type)
+        </td>
+                <td>
+            @Html.DisplayFor(modelItem => item.TrustFlow)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CitationFlow)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RI)
+        </td>
+                <td>
+            @Html.DisplayFor(modelItem => item.MJTopics.topicalTF)
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Details", "Identifiers", new { id=item.ID }, new {@class= "glyphicon glyphicon-home" })
+            @Html.ActionLink(" ", "Edit", "Identifiers", new { id=item.ID }, new {@class= "glyphicon glyphicon-edit" }) 
+            @Html.ActionLink(" ", "Delete", "Identifiers", new { id=item.ID }, new {@class= "glyphicon glyphicon-trash" })
+        </td>
+    </tr>
+}
+
+</table>
+                                </div>
+        </div>
